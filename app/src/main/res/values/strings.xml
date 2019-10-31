@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Homework41</string>
+    <string name="ok">ОК</string>
+    <string name="input_money">Ввод денег</string>
+    <string name="info">Информация об оплате</string>
+    <string name="card">С банковской карты</string>
+    <string name="phone">С мобильного телефона</string>
+    <string name="cash">Наличными по адресу</string>
+</resources>
