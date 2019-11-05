@@ -8,16 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView money, info;
-    private CheckBox card, phone, cash;
+    private TextView info;
+    private CheckBox card;
+    private CheckBox phone;
+    private CheckBox cash;
     private Button ok;
-    String text;
+    private String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,22 +26,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initViews();
-
-
-
     }
 
     private void initViews(){
-        money = (TextView) findViewById(R.id.money);
-        info = (TextView) findViewById(R.id.info);
-        card = (CheckBox) findViewById(R.id.card);
-        phone = (CheckBox) findViewById(R.id.phone);
-        cash = (CheckBox) findViewById(R.id.cash);
-        ok = (Button) findViewById(R.id.ok);
+        info = findViewById(R.id.info);
+        card = findViewById(R.id.card);
+        phone = findViewById(R.id.phone);
+        cash = findViewById(R.id.cash);
+        ok = findViewById(R.id.ok);
+
         card.setOnCheckedChangeListener(checked);
         phone.setOnCheckedChangeListener(checked);
         cash.setOnCheckedChangeListener(checked);
-        ok.setOnClickListener(oclOk);
+        ok.setOnClickListener(onClickListenerOk);
         resetChecks();
     }
 
@@ -50,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         cash.setChecked(false);
     }
 
-    CompoundButton.OnCheckedChangeListener checked = new CompoundButton.OnCheckedChangeListener() {
+    private CompoundButton.OnCheckedChangeListener checked = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked){
@@ -60,26 +58,26 @@ public class MainActivity extends AppCompatActivity {
                         resetChecks();
                         card.setChecked(true);
                         info.setInputType(InputType.TYPE_CLASS_NUMBER);
-                        text = "Выбрана оплата банковской картой.";
+                        text = getString(R.string.cardPay);
                         break;
                     case R.id.phone:
                         resetChecks();
                         phone.setChecked(true);
                         info.setInputType(InputType.TYPE_CLASS_PHONE);
-                        text = "Выбрана оплата с мобильного телефона.";
+                        text = getString(R.string.phonePay);
                         break;
                     case R.id.cash:
                         resetChecks();
                         cash.setChecked(true);
                         info.setInputType(InputType.TYPE_CLASS_TEXT);
-                        text = "Выбрана оплата наличными.";
+                        text = getString(R.string.cashPay);
                         break;
                 }
             }
         }
     };
 
-    View.OnClickListener oclOk = new View.OnClickListener() {
+    private View.OnClickListener onClickListenerOk = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();

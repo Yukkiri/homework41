@@ -6,4 +6,7 @@
     <string name="card">С банковской карты</string>
     <string name="phone">С мобильного телефона</string>
     <string name="cash">Наличными по адресу</string>
+    <string name="cardPay">Выбрана оплата банковской картой.</string>
+    <string name="phonePay">Выбрана оплата с мобильного телефона.</string>
+    <string name="cashPay">Выбрана оплата наличными.</string>
 </resources>
